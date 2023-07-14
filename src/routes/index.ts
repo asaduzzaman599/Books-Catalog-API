@@ -8,4 +8,4 @@ const routes = [
 
 routes.forEach(route => router.use(route.path, route.route))
 
-export const AppRouter = router
+export const AppRoutes = router
