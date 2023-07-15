@@ -2,10 +2,14 @@ import { Request, Response } from "express"
 import catchAsync from "../../../shared/catch-async";
 import responseData from "../../../shared/response";
 import { BookService } from "./books.service"
+import { BookConstant } from "./books.constants"
 
 const createBook = catchAsync(async (req: Request, res: Response) => {
   const body = req.body
-  const result = await BookService.createBook(body);
+  const user = req.user
+  const result = await BookService.createBook(body, user);
+
+
 
   responseData(
     {
@@ -17,8 +21,8 @@ const createBook = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllBook = catchAsync(async (req: Request, res: Response) => {
-
-  const result = await BookService.getAllBooks();
+  const filters = pick(req.query, BookConstant.booksFilteredOptions);
+  const result = await BookService.getAllBooks(filters);
 
   responseData(
     {
