@@ -18,7 +18,7 @@ const auth = (...roles: string[]) => {
       req.user = user;
 
       if (roles?.length) {
-        if(!user.role || roles.includes(user.role)){
+        if(!user.role || !roles.includes(user.role)){
           next('Forbidden!')
         }
       }
