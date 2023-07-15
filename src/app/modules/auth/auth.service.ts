@@ -2,6 +2,6 @@ const createUSer = async () => {
   return 'user Creating'
 }
 
-export const UserService = {
+export const AuthService = {
   createUSer
 } 

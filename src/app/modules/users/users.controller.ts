@@ -1,9 +1,19 @@
-import express from 'express'
+import { Request, Response } from "express"
+import catchAsync from "../../../shared/catch-async"
+import { UserService } from "./users.service"
+import httpstatus from "http-status"
 
-const router = express.Router()
+const createUser = catchAsync(async (req: Request, res: Response) => {
+  const result = await UserService.createUSer()
 
-router.route('/create-user').get()
+  res.status(httpstatus.OK).json({
+    statusCode: httpstatus.OK,
+    status: 'Success',
+    result,
+    message: 'Successful!'
+  })
+})
 
-
-
-export const UserRouter = router
+export const UserController = {
+  createUser
+}
