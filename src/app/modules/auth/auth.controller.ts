@@ -1,23 +1,24 @@
 import { Request, Response } from "express";
-import httpstatus from "http-status";
 import catchAsync from "../../../shared/catch-async";
 import responseData from "../../../shared/response";
-import {AuthService } from "./auth.service";
-import { IUser } from "../users/users.interface"
+import { IUser } from "../users/users.interface";
+import { AuthService } from "./auth.service";
 
 const loginUser = catchAsync(async (req: Request, res: Response) => {
-  const result = ''
+  const body = req.body;
 
-  res.status(httpstatus.OK).json({
-    statusCode: httpstatus.OK,
-    status: "Success",
-    result,
-    message: "Successful!",
-  });
+  const result = await AuthService.loginUser(body);
+
+  return responseData(
+    {
+      result,
+    },
+    res
+  );
 });
 
 const createUser = catchAsync(async (req: Request, res: Response) => {
-  const body = req.body
+  const body = req.body;
   const result = await AuthService.createUser(body);
 
   return responseData<Partial<IUser>>({ result }, res);

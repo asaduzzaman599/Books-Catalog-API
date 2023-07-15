@@ -1,3 +1,5 @@
+import { HydratedDocument, Model } from "mongoose"
+
 type IUserName = {
   firstName: string
   middleName?: string
@@ -9,4 +11,13 @@ export type IUser = {
   email: string
   password: string
   avatar?: string
+}
+
+
+export interface IUserMethods {
+  isPasswordMatched(password: string): Promise<boolean>;
+}
+
+export interface UserModel extends Model<IUser, Record<string, unknown>, IUserMethods> {
+  getExistsUser(input: {email?: string, phone?: string}): Promise<HydratedDocument<IUser, IUserMethods>>;
 }
