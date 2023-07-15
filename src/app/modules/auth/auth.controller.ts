@@ -3,9 +3,10 @@ import httpstatus from "http-status";
 import catchAsync from "../../../shared/catch-async";
 import responseData from "../../../shared/response";
 import {AuthService } from "./auth.service";
+import { IUser } from "../users/users.interface"
 
 const loginUser = catchAsync(async (req: Request, res: Response) => {
-  const result = await AuthService.createUSer();
+  const result = ''
 
   res.status(httpstatus.OK).json({
     statusCode: httpstatus.OK,
@@ -16,9 +17,10 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
 });
 
 const createUser = catchAsync(async (req: Request, res: Response) => {
-  const result = await AuthService.createUSer();
+  const body = req.body
+  const result = await AuthService.createUser(body);
 
-  return responseData({ result }, res);
+  return responseData<Partial<IUser>>({ result }, res);
 });
 
 export const AuthController = {

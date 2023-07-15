@@ -7,6 +7,6 @@ export type IUser = {
   name: IUserName
   phone: string,
   email: string
-  password?: string
+  password: string
   avatar?: string
 }

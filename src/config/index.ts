@@ -7,4 +7,5 @@ export default {
   ENV: process.env.NODE_ENV,
   PORT: process.env.PORT,
   DATABASE_URL: process.env.DATABASE_URL as string,
+  BCRYPT_SALT_ROUNDS: Number(process.env.BCRYPT_SALT_ROUNDS),
 };
