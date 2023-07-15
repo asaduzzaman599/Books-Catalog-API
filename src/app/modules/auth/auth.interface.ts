@@ -9,3 +9,9 @@ export type ILoginResponse = {
   user: Partial<IUser>
   accessToken: string
 }
+
+export type IValidateUser = {
+  email: string
+  phone: string
+  role?: string
+}
