@@ -27,7 +27,7 @@ const loginUser = async (payload: ILoginInput): Promise<ILoginResponse> => {
  const { password, ...userWithOutPass} = user
 
  
- const accessToken = JwtHelpers.generateToken({ email: user.email, _id: user._id, phone: user.phone })
+ const accessToken = JwtHelpers.generateToken({ email: user.email, phone: user.phone, userId: user._id  })
  
  return {
   user: userWithOutPass,

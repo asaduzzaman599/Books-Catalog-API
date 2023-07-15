@@ -64,18 +64,18 @@ const getBook = async (id: string) => {
 }
 
 const updateBook = async (id: string, payload: Partial<IBooks>, validateUser: IValidateUser) => {
-    const user = await User.exists({
-      email: validateUser.email
-    })
-
-    if(!user) 
-    throw new Error('Failed to create book!')
-    const book = await Book.findById(id)
+  const user = await User.exists({
+    email: validateUser.email
+  })
+  
+  if(!user) 
+  throw new Error('Failed to create book!')
+  const book = await Book.findById(id)
 
     if(book?.createdBy?.toString() !== user._id.toString())
     throw new Error('Forbidden!')
   
-  return await Book.findByIdAndUpdate({id},payload,{new:true})
+  return await Book.findByIdAndUpdate(id,payload,{new:true})
 }
 
 const deleteBook = async (id: string,  validateUser: IValidateUser) => {
@@ -86,7 +86,7 @@ const deleteBook = async (id: string,  validateUser: IValidateUser) => {
     
     if(!user) 
     throw new Error('Failed to create book!')
-    
+
     const book = await Book.findById(id)
     if(book?.createdBy?.toString() !== user._id.toString())
     throw new Error('Forbidden!')

@@ -3,10 +3,11 @@ import catchAsync from "../../../shared/catch-async";
 import responseData from "../../../shared/response";
 import { BookService } from "./books.service"
 import { BookConstant } from "./books.constants"
+import { IValidateUser } from "../auth/auth.interface"
 
 const createBook = catchAsync(async (req: Request, res: Response) => {
   const body = req.body
-  const user = req.user
+  const user = req.user as IValidateUser
   const result = await BookService.createBook(body, user);
 
 
@@ -47,7 +48,9 @@ const getBook = catchAsync(async (req: Request, res: Response) => {
 const updateBook = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id
   const body = req.body
-  const result = await BookService.updateBook(id, body);
+  
+  const user = req.user as IValidateUser
+  const result = await BookService.updateBook(id, body, user);
 
   responseData(
     {
@@ -60,7 +63,8 @@ const updateBook = catchAsync(async (req: Request, res: Response) => {
 
 const deleteBook = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id
-  const result = await BookService.deleteBook(id);
+  const user = req.user as IValidateUser
+  const result = await BookService.deleteBook(id, user);
 
   responseData(
     {

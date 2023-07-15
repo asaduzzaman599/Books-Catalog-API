@@ -10,9 +10,10 @@ const auth = (...roles: string[]) => {
       if (!authorization) {
         next("Invalid token!");
       }
-
-      let token = "";
-
+      
+      let token = authorization as string;
+      
+      
       const user = JwtHelpers.verifyToken(token) as IValidateUser;
 
       req.user = user;
@@ -29,3 +30,6 @@ const auth = (...roles: string[]) => {
     }
   };
 };
+
+
+export default auth

@@ -11,6 +11,7 @@ export type ILoginResponse = {
 }
 
 export type IValidateUser = {
+  userId: string
   email: string
   phone: string
   role?: string
