@@ -3,8 +3,8 @@ import { UserRouter } from "../app/modules/users/users.route"
 import { AuthRouter } from "../app/modules/auth/auth.route"
 import { BookRouter } from "../app/modules/books/books.route"
 import { ReadListRouter } from "../app/modules/readlist/readlist.route"
-import { WishListRouter } from "../app/modules/wishlist/readlist.route"
 import { ReviewRouter } from "../app/modules/reviews/reviews.route"
+import { WishListRouter } from "../app/modules/wishlist/wishlist.route"
 
 const router = express.Router()
 const routes = [

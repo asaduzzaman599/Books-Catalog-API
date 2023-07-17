@@ -5,7 +5,7 @@ import { ReadListController } from './readlist.controller'
 const router = express.Router()
 
 
-router.route('/').put(auth(),ReadListController.getReadList)
+router.route('/').get(auth(),ReadListController.getReadList)
 router.route('/:id').put(auth(),ReadListController.addToReadList)
 
 export const ReadListRouter = router

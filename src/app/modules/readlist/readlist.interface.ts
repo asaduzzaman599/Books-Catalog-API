@@ -3,6 +3,6 @@ import { IBooks } from "../books/books.interface"
 import { IUser } from "../users/users.interface"
 
 export type IReadList = {
-  books : Types.ObjectId[] | IBooks[]
+  book : Types.ObjectId | IBooks
   user:  Types.ObjectId | IUser
 }

@@ -8,3 +8,5 @@ const pick = <T extends Record<string, unknown>,U extends keyof T>(obj: T, keys:
 
   return options
 }
+
+export default pick

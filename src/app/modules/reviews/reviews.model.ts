@@ -19,10 +19,12 @@ const reviewSchema = new Schema<IReview>({
   },
   rating: {
     type: Number,
-    required: true
   }
 },{
-  timestamps: true
+  timestamps: true,
+  toJSON:{
+    virtuals: true
+  }
 });
 
 export const Review = model<IReview>('Review', reviewSchema);

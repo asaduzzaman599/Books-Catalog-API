@@ -2,7 +2,7 @@ import { Request, Response } from "express"
 import { IValidateUser } from "../auth/auth.interface"
 import responseData from "../../../shared/response"
 import catchAsync from "../../../shared/catch-async"
-import { WishListService } from "./wishdlist.service"
+import { WishListService } from "./wishlist.service"
 
 const getWishList = catchAsync(async (req: Request, res: Response) => {
   

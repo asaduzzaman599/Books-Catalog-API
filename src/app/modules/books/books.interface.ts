@@ -5,7 +5,7 @@ export type IBooks = {
   title: string
   author: string
   genre: string
-  publicationDate: string
+  publicationDate: Date
   createdBy?: Types.ObjectId | IUser 
 }
 

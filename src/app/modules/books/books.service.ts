@@ -15,7 +15,7 @@ const createBook = async (payload: IBooks, validateUser: IValidateUser) => {
   return (await Book.create({...payload, createdBy: user?._id})).toObject()
 }
 
-const getAllBooks = async (filters: Partial<IBookFilters>) => {
+const getAllBooks = async (filters: Partial<IBookFilters>, paginationQuery?: {limit?:string}) => {
 
   const {search, ...filterOptions} = filters
   const and = [];
@@ -55,12 +55,14 @@ const getAllBooks = async (filters: Partial<IBookFilters>) => {
   const where =
     and.length > 0 ? { $and: and } : {};
 
-
-  return await Book.find(where)
+if(paginationQuery?.limit){
+  return await Book.find(where).limit(+paginationQuery?.limit).populate('createdBy')
+}
+return await Book.find(where).populate('createdBy')
 }
 
 const getBook = async (id: string) => {
-  return await Book.findById(id)
+  return await Book.findById(id).populate('createdBy')
 }
 
 const updateBook = async (id: string, payload: Partial<IBooks>, validateUser: IValidateUser) => {
@@ -75,7 +77,7 @@ const updateBook = async (id: string, payload: Partial<IBooks>, validateUser: IV
     if(book?.createdBy?.toString() !== user._id.toString())
     throw new Error('Forbidden!')
   
-  return await Book.findByIdAndUpdate(id,payload,{new:true})
+  return await Book.findByIdAndUpdate(id,payload,{new:true}).populate('createdBy')
 }
 
 const deleteBook = async (id: string,  validateUser: IValidateUser) => {

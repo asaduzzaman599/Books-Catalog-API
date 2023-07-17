@@ -15,7 +15,7 @@ const bookSchema = new Schema<IBooks>({
     required: true,
   },
   publicationDate: {
-    type: String,
+    type: Date,
     required: true,
   },
   createdBy:{
@@ -24,7 +24,10 @@ const bookSchema = new Schema<IBooks>({
     required: true
   }
 },{
-  timestamps: true
+  timestamps: true,
+  toJSON:{
+    virtuals: true
+  }
 });
 
 export const Book = model<IBooks>('Book', bookSchema);

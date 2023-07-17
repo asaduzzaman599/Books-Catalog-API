@@ -10,7 +10,7 @@ type IData<T> = {
 }
 
  const responseData = <T>(data: IData<T>,res:Response) =>{
-  const status = data.status ?? false
+  const status = data.status ?? true
   const statusCode = data.statusCode ?? httpstatus.OK
 
   const response = {

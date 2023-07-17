@@ -4,6 +4,7 @@ import responseData from "../../../shared/response";
 import { BookService } from "./books.service"
 import { BookConstant } from "./books.constants"
 import { IValidateUser } from "../auth/auth.interface"
+import pick from "../../../shared/pick"
 
 const createBook = catchAsync(async (req: Request, res: Response) => {
   const body = req.body
@@ -23,7 +24,8 @@ const createBook = catchAsync(async (req: Request, res: Response) => {
 
 const getAllBook = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, BookConstant.booksFilteredOptions);
-  const result = await BookService.getAllBooks(filters);
+  const paginationQuery = pick(req.query, ['limit']);
+  const result = await BookService.getAllBooks(filters, paginationQuery);
 
   responseData(
     {

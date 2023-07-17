@@ -6,6 +6,7 @@ import validateRequest from '../../middleware/validate-request'
 const router = express.Router()
 
 router.route('/login').post(validateRequest(AuthValidation.authLoginZodValidation),AuthController.loginUser)
+
 router.route('/signup').post(validateRequest(AuthValidation.authSignUpZodValidation),AuthController.createUser)
 
 export const AuthRouter = router

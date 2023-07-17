@@ -6,6 +6,6 @@ const router = express.Router()
 
 
 router.route('/').post(auth(),ReviewController.addReview)
-router.route('/:id').get(auth(),ReviewController.getReview)
+router.route('/:id').get(ReviewController.getReview)
 
 export const ReviewRouter = router
