@@ -77,10 +77,23 @@ const deleteBook = catchAsync(async (req: Request, res: Response) => {
   );
 });
 
+const getBooksGroupBy = catchAsync(async (req: Request, res: Response) => {
+
+  const result = await BookService.getBooksGroupBy();
+
+  responseData(
+    {
+      result,
+    },
+    res
+  );
+});
+
 export const BookController = {
   createBook,
   getAllBook,
   getBook,
   updateBook,
-  deleteBook
+  deleteBook,
+  getBooksGroupBy
 };

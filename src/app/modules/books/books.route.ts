@@ -8,7 +8,11 @@ const router = express.Router()
 
 router.route('/')
 .get(BookController.getAllBook)
+
 router.route('/create-book').post(auth(),validateRequest(BookValidation.bookCreateZodValidation),BookController.createBook)
+
+router.route('/group-by')
+.get(BookController.getBooksGroupBy)
 
 router.route('/:id')
 .get(BookController.getBook)
