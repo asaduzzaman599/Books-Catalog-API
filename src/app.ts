@@ -13,6 +13,12 @@ app.use(express.urlencoded({ extended: true }));
 //router
 app.use('/api/v1', AppRoutes)
 
+app.get('/', async (req: Request, res: Response) => {
+  res.status(httpStatus.OK).json({
+    status: httpStatus.OK,
+    message: `Server is Running!`
+  }) 
+})
 
 app.use(globalErrorHandler)
 

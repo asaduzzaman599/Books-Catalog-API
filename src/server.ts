@@ -17,12 +17,7 @@ async function main() {
     console.log(`Server is running on PORT: ${port}`)
   })
 
-  app.get('/', (req: Request, res: Response) => {
-    res.status(httpStatus.OK).json({
-      status: httpStatus.OK,
-      message: `Server is Running!`
-    }) 
-  })
+  
 } catch (err) {
   console.log('Failed to connect database', err);
 }
